@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Share to delete</string>
     <string name="button_cancel">Cancel</string>
-    <string name="button_delete">Delete</string>
+    <string name="button_delete">​Delete</string>
     <string name="list_not_found">Not found.</string>
     <string name="toast_deleted">(%1$d/%2$d)  Deleted</string>
     <string name="title_finding_files">Finding files…</string>
