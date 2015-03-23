@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 public class MyUtil {
-    public final static String PACKAGE_NAME = "tinyclipboardmanager";
+    public final static String PACKAGE_NAME = "share2delete";
 
     public static int dip2px(Context context, float dipValue){
         final float scale = context.getResources().getDisplayMetrics().density;

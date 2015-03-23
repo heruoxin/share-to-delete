@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,7 +11,7 @@
 
     <TextView
         android:id="@+id/title"
-        android:text="@string/button_delete"
+        android:text="@string/title_finding_files"
         style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -24,10 +23,19 @@
         android:id="@+id/details_outline"
         android:layout_width="match_parent"
         android:layout_height="200dp">
+
         <ScrollView
-            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/details"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </LinearLayout>
 
         </ScrollView>
 
@@ -37,8 +45,10 @@
         android:layout_below="@id/details_outline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_button_min_height_material">
+
         <Button
             android:id="@+id/delete"
+            android:visibility="invisible"
             android:clickable="true"
             android:onClick="onDeleteClick"
             android:text="@string/button_delete"
