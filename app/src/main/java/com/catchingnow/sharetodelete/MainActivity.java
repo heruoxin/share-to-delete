@@ -27,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
 
     private List<String> filePaths;
     private int allFilesCount;
+    private int deleteAbleFilesCount;
     private boolean deleteAble = false;
 
     private LayoutInflater layoutInflater;
@@ -63,7 +64,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        onCancelClick(null);
     }
 
     @Override
@@ -105,17 +105,21 @@ public class MainActivity extends ActionBarActivity {
 
         if (Intent.ACTION_SEND.equals(action)) {
             Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-            filePaths.add(MyUtil.getRealPathFromURI(this, uri));
             allFilesCount = 1;
+            String path = MyUtil.getRealPathFromURI(this, uri);
+            if (!(path == null || path.isEmpty())) {
+                filePaths.add(path);
+            }
         } else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
             ArrayList<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-            Log.v(MyUtil.PACKAGE_NAME, "findFiles uris: "+uris.size());
-            for (Uri uri: uris) {
-                filePaths.add(MyUtil.getRealPathFromURI(this, uri));
-            }
             allFilesCount = uris.size();
+            for (Uri uri: uris) {
+                String path = MyUtil.getRealPathFromURI(this, uri);
+                if (path == null || path.isEmpty()) continue;
+                filePaths.add(path);
+            }
         }
-        Log.v(MyUtil.PACKAGE_NAME, "filePaths: "+filePaths.size());
+        deleteAbleFilesCount = filePaths.size();
 
         return filePaths;
     }
@@ -130,17 +134,14 @@ public class MainActivity extends ActionBarActivity {
         }
 
         //set title
-        titleView.setText(getString(R.string.title_files_found, allFilesCount, filePaths.size()));
+        titleView.setText(getString(R.string.title_files_found, allFilesCount, deleteAbleFilesCount));
 
-        Log.v(MyUtil.PACKAGE_NAME, "filePaths: "+filePaths.size());
         linearLayout.removeAllViews();
         for (String filePath: filePaths) {
             if (filePath == null || filePath.isEmpty()) continue;
-            Log.v(MyUtil.PACKAGE_NAME, "for filePaths: "+ filePath);
             View inflate = layoutInflater.inflate(R.layout.activity_main_card, null);
             ((TextView) inflate.findViewById(R.id.text)).setText(filePath);
             linearLayout.addView(inflate);
-            Log.v(MyUtil.PACKAGE_NAME, "linearLayout size: " + linearLayout.getChildCount());
         }
     }
 
