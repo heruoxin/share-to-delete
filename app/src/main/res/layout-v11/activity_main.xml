@@ -53,7 +53,7 @@
             android:onClick="onDeleteClick"
             android:text="@string/button_delete"
             android:textColor="@color/holo_dark_blue"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -64,7 +64,7 @@
             android:onClick="onCancelClick"
             android:text="@string/button_cancel"
             android:textColor="@android:color/black"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_toLeftOf="@id/delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />

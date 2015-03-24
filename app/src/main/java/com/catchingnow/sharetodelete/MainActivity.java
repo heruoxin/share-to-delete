@@ -107,7 +107,7 @@ public class MainActivity extends ActionBarActivity {
             Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
             allFilesCount = 1;
             String path = MyUtil.getRealPathFromURI(this, uri);
-            if (!(path == null || path.isEmpty())) {
+            if (!(path == null || path.equals(""))) {
                 filePaths.add(path);
             }
         } else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
@@ -115,7 +115,7 @@ public class MainActivity extends ActionBarActivity {
             allFilesCount = uris.size();
             for (Uri uri: uris) {
                 String path = MyUtil.getRealPathFromURI(this, uri);
-                if (path == null || path.isEmpty()) continue;
+                if (path == null || path.equals("")) continue;
                 filePaths.add(path);
             }
         }
@@ -138,7 +138,7 @@ public class MainActivity extends ActionBarActivity {
 
         linearLayout.removeAllViews();
         for (String filePath: filePaths) {
-            if (filePath == null || filePath.isEmpty()) continue;
+            if (filePath == null || filePath.equals("")) continue;
             View inflate = layoutInflater.inflate(R.layout.activity_main_card, null);
             ((TextView) inflate.findViewById(R.id.text)).setText(filePath);
             linearLayout.addView(inflate);
