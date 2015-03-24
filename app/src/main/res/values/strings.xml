@@ -4,7 +4,7 @@
     <string name="button_delete">​Delete</string>
     <string name="list_not_found">"\nNot found."</string>
     <string name="toast_deleted">(%1$d/%2$d)  Deleted</string>
-    <string name="title_finding_files">Scanning SD-card…</string>
+    <string name="title_finding_files">Scanning SD-Card…</string>
     <string name="title_deleting">Deleting…</string>
-    <string name="title_files_found">"(%1$d/%2$d) in Sd-card"</string>
+    <string name="title_files_found">"(%1$d/%2$d) in SD-Card"</string>
 </resources>
