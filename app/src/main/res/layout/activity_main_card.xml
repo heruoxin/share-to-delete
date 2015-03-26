@@ -7,6 +7,7 @@
     <TextView
         android:id="@+id/text"
         style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_margin="@dimen/activity_vertical_margin"
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
