@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
 
         addLoadingCard(null);
 
-        final Handler mHandler = new Handler() {
+        final  Handler mHandler = new Handler() {
             public void handleMessage (Message msg) {
                 updateList(filePaths);
             }

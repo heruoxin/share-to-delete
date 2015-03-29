@@ -56,7 +56,10 @@ public class MyUtil {
         try {
             String[] project = { MediaStore.Images.Media.DATA };
             cursor = context.getContentResolver().query(contentUri, project, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            if (column_index == -1) {
+                return null;
+            }
             cursor.moveToFirst();
             return cursor.getString(column_index);
         } finally {
