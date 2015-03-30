@@ -4,11 +4,13 @@ import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -41,6 +43,7 @@ public class AutoCleanService extends JobService {
         if (!preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN, false)) return false;
         sendNotification();
         cleanUp();
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
