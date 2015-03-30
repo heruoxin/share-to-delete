@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,8 +57,13 @@ public class MyUtil {
         try {
             String[] project = { MediaStore.Images.Media.DATA };
             cursor = context.getContentResolver().query(contentUri, project, null, null, null);
+            if (cursor == null) {
+                Log.e(MyUtil.PACKAGE_NAME, "cursor is null!");
+                return null;
+            }
             int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
             if (column_index == -1) {
+                Log.e(MyUtil.PACKAGE_NAME, "column_index out of index!");
                 return null;
             }
             cursor.moveToFirst();
