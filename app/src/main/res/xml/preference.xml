@@ -11,15 +11,15 @@
         <ListPreference
             android:title="@string/pref_auto_clean_file_type"
             android:summary="@string/pref_auto_clean_summary_file_type"
-            android:key="pref_auto_clean_file_type"
             android:dialogTitle="@string/pref_auto_clean_file_type"
+            android:key="pref_auto_clean_file_type"
             android:entries="@array/file_types"
             android:entryValues="@array/file_type_values" />
         <ListPreference
             android:title="@string/pref_auto_clean_delay_date"
             android:summary="@string/pref_auto_clean_summary_delay_date"
-            android:key="pref_auto_clean_delay_date"
             android:dialogTitle="@string/pref_auto_clean_delay_date"
+            android:key="pref_auto_clean_delay_date"
             android:entries="@array/dates"
             android:entryValues="@array/date_values"
             />

@@ -5,11 +5,11 @@
         <item name="1">Videos</item>
         <item name="2">Images &amp; Videos</item>
     </string-array>
-    <string-array name="file_type_values">
+    <integer-array name="file_type_values">
         <item name="0">0</item>
         <item name="1">1</item>
         <item name="2">2</item>
-    </string-array>
+    </integer-array>
 
     <string-array name="dates">
         <item name="0">1 Month</item>
@@ -17,10 +17,10 @@
         <item name="2">6 Months</item>
         <item name="3">12 Months</item>
     </string-array>
-    <string-array name="date_values">
+    <integer-array name="date_values">
         <item name="0">1</item>
         <item name="1">3</item>
         <item name="1">6</item>
         <item name="2">12</item>
-    </string-array>
+    </integer-array>
 </resources>

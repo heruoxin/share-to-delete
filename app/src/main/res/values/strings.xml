@@ -16,7 +16,7 @@
     <string name="pref_auto_clean_file_type">File type</string>
     <string name="pref_auto_clean_summary_file_type">Clean up specific type of files.</string>
     <string name="about">About</string>
-    <string name="pref_auto_clean_delay_date">Days of file to keep</string>
+    <string name="pref_auto_clean_delay_date">Months of file to keep</string>
     <string name="pref_auto_clean_summary_delay_date">Set the days of file to keep.</string>
     <string name="title_activity_auto_clean_summary">Auto clean up files when charging.\n (Require Android Lollipop or above)</string>
 </resources>

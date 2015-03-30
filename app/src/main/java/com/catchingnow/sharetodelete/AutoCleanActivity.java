@@ -74,7 +74,9 @@ public class AutoCleanActivity extends PreferenceActivity {
         JobInfo job = new JobInfo.Builder(0, new ComponentName(this, AutoCleanService.class))
                 .setRequiresCharging(true)
                 .setRequiresDeviceIdle(true)
-                .setPeriodic(24 * 60 * 60 * 1000)
+                .setPeriodic(8000)
+                        //TODO remove it
+                //.setPeriodic(24 * 60 * 60 * 1000)
                 .setPersisted(true)
                 .build();
         JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
