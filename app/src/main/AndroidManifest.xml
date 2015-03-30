@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.catchingnow.sharetodelete" >
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -34,9 +35,16 @@
         </activity>
         <activity
             android:name=".AutoCleanActivity"
-            android:theme="@style/AppSettingTheme"
-            android:label="@string/title_activity_auto_clean" >
+            android:label="@string/title_activity_auto_clean"
+            android:theme="@style/AppSettingTheme" >
         </activity>
+
+        <service
+            android:name=".AutoCleanService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
     </application>
 
 </manifest>

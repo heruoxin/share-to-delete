@@ -1,10 +1,15 @@
 package com.catchingnow.sharetodelete;
 
+import android.annotation.TargetApi;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -37,6 +42,7 @@ public class AutoCleanActivity extends PreferenceActivity {
     public final static String PREF_AUTO_CLEAN_FILE_TYPE = "pref_auto_clean_file_type";
     public final static String PREF_AUTO_CLEAN_DELAY_DATE = "pref_auto_clean_delay_date";
 
+    private SharedPreferences preference;
     private Toolbar mActionBar;
     private SharedPreferences.OnSharedPreferenceChangeListener myPrefChangeListener;
     private Context context;
@@ -59,6 +65,23 @@ public class AutoCleanActivity extends PreferenceActivity {
 //        preference.edit().putLong(PREF_LAST_ACTIVE_THIS, new Date().getTime()).commit();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void bindJobService() {
+        if (!preference.getBoolean(PREF_AUTO_CLEAN, false)) return;
+        //TODO: bind jobSchedle here.
+
+        // JobScheduler for auto clean sqlite
+        JobInfo job = new JobInfo.Builder(0, new ComponentName(this, AutoCleanService.class))
+                .setRequiresCharging(true)
+                .setRequiresDeviceIdle(true)
+                .setPeriodic(24 * 60 * 60 * 1000)
+                .setPersisted(true)
+                .build();
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(0);
+        jobScheduler.schedule(job);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +89,7 @@ public class AutoCleanActivity extends PreferenceActivity {
         context = this.getBaseContext();
         addPreferencesFromResource(R.xml.preference);
         mActionBar.setTitle(getTitle());
+        preference = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     @Override
@@ -82,7 +106,9 @@ public class AutoCleanActivity extends PreferenceActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //TODO: bind jobSchedle here.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bindJobService();
+        }
     }
 
     @Override
