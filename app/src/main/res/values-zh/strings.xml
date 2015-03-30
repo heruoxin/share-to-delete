@@ -19,5 +19,6 @@
     <string name="pref_auto_clean_summary_file_type">清理指定的文件类型。</string>
     <string name="pref_rate_summary">如果觉得有用，请为我评分。</string>
     <string name="pref_rate_title">评分</string>
-    <string name="title_activity_auto_clean_summary">充电时自动清理文件。\n（需要 Android 5.0 或更高版本）</string>
+    <string name="title_activity_auto_clean_summary">充电时自动清理存储卡。\n（仅支持 Android 5.0 或更高的系统）</string>
+    <string name="toast_auto_clean">清理了 %1$s 个过期文件。</string>
 </resources>

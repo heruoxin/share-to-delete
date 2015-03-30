@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class AutoCleanActivity extends PreferenceActivity {
 
     //Fix LG support V7 bug:
@@ -67,6 +66,7 @@ public class AutoCleanActivity extends PreferenceActivity {
 //        preference.edit().putLong(PREF_LAST_ACTIVE_THIS, new Date().getTime()).commit();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void bindJobService() {
         if (!preference.getBoolean(PREF_AUTO_CLEAN, false)) {
             jobScheduler.cancel(0);
@@ -89,21 +89,30 @@ public class AutoCleanActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.preference);
         mActionBar.setTitle(getTitle());
         preference = PreferenceManager.getDefaultSharedPreferences(context);
-        jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mActionBar.setElevation(MyUtil.dip2px(context, 4));
-        jobScheduler.cancel(0);
-        initSharedPrefListener();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mActionBar.setElevation(MyUtil.dip2px(context, 4));
+            jobScheduler.cancel(0);
+            initSharedPrefListener();
+        } else {
+            findPreference("pref_auto_clean").setEnabled(false);
+
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        bindJobService();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bindJobService();
+        }
     }
 
     @Override
