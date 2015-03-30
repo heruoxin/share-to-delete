@@ -15,18 +15,27 @@
             android:label="@string/button_delete" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AutoCleanActivity"
+            android:theme="@style/AppSettingTheme"
+            android:label="@string/title_activity_auto_clean" >
         </activity>
     </application>
 

@@ -134,7 +134,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         //set title
-        titleView.setText(getString(R.string.title_files_found, allFilesCount, deleteAbleFilesCount));
+        titleView.setText(getString(R.string.title_files_found, deleteAbleFilesCount, allFilesCount));
 
         linearLayout.removeAllViews();
         for (String filePath: filePaths) {
@@ -143,6 +143,10 @@ public class MainActivity extends ActionBarActivity {
             ((TextView) inflate.findViewById(R.id.text)).setText(filePath);
             linearLayout.addView(inflate);
         }
+    }
+
+    public void onSettingClick(View view) {
+        startActivity(new Intent(this, AutoCleanActivity.class));
     }
 
     public void onCancelClick(View view) {
@@ -176,4 +180,5 @@ public class MainActivity extends ActionBarActivity {
         ).show();
         onCancelClick(view);
     }
+
 }

@@ -7,4 +7,15 @@
     <string name="title_finding_files">Scanning SD-Card…</string>
     <string name="title_deleting">Deleting…</string>
     <string name="title_files_found">"(%1$d/%2$d) in SD-Card"</string>
+    <string name="title_activity_auto_clean">Auto Clean</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_about_title">Open Source</string>
+    <string name="pref_about_summary">View source code on GitHub.</string>
+    <string name="pref_rate_title">Rate me</string>
+    <string name="pref_rate_summary">Rate this app if you think it\'s useful.</string>
+    <string name="pref_auto_clean_file_type">File type</string>
+    <string name="pref_auto_clean_summary_file_type">Clean up specific type of files.</string>
+    <string name="about">About</string>
+    <string name="pref_auto_clean_delay_date">Days of file to keep</string>
+    <string name="pref_auto_clean_summary_delay_date">Set the days of file to keep.</string>
 </resources>

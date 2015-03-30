@@ -47,6 +47,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_button_min_height_material">
 
+        <ImageButton
+            android:src="@drawable/ic_action_settings"
+            android:scaleType="centerCrop"
+            android:onClick="onSettingClick"
+            android:contentDescription="@string/action_settings"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
         <Button
             android:id="@+id/delete"
             android:visibility="invisible"
@@ -54,7 +63,7 @@
             android:onClick="onDeleteClick"
             android:text="@string/button_delete"
             android:textColor="@color/primary"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -65,7 +74,7 @@
             android:onClick="onCancelClick"
             android:text="@string/button_cancel"
             android:textColor="@android:color/black"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_toLeftOf="@id/delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />

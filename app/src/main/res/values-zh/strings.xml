@@ -8,4 +8,6 @@
     <string name="title_files_found">"已找到%1$d，共%2$d"</string>
     <string name="title_finding_files">正在扫描存储卡</string>
     <string name="toast_deleted">(%1$d/%2$d)  已删除</string>
+    <string name="title_activity_auto_clean">自动清理</string>
+    <string name="action_settings">设置</string>
 </resources>

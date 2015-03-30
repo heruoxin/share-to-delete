@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:title="@string/title_activity_auto_clean"
+        android:key="pref_auto_clean"
+        android:defaultValue="false" />
+    <PreferenceCategory
+        android:title="@string/action_settings"
+        android:dependency="pref_auto_clean">
+        <ListPreference
+            android:title="@string/pref_auto_clean_file_type"
+            android:summary="@string/pref_auto_clean_summary_file_type"
+            android:key="pref_auto_clean_file_type"
+            android:dialogTitle="@string/pref_auto_clean_file_type"
+            android:entries="@array/file_types"
+            android:entryValues="@array/file_type_values" />
+        <ListPreference
+            android:title="@string/pref_auto_clean_delay_date"
+            android:summary="@string/pref_auto_clean_summary_delay_date"
+            android:key="pref_auto_clean_delay_date"
+            android:dialogTitle="@string/pref_auto_clean_delay_date"
+            android:entries="@array/dates"
+            android:entryValues="@array/date_values"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/about">
+        <!--
+        <Preference
+            android:title="@string/pref_about_title"
+            android:summary="@string/pref_about_summary">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://goo.gl/dpwozO" />
+        </Preference>
+        -->
+        <Preference
+            android:title="@string/pref_rate_title"
+            android:summary="@string/pref_rate_summary">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://goo.gl/ftras1" />
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

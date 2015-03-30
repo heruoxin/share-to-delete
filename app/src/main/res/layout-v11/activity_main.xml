@@ -53,7 +53,7 @@
             android:clickable="true"
             android:onClick="onDeleteClick"
             android:text="@string/button_delete"
-            android:textColor="@color/holo_dark_blue"
+            android:textColor="@color/primary"
             android:background="?android:attr/selectableItemBackground"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
