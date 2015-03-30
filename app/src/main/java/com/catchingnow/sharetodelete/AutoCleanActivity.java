@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class AutoCleanActivity extends PreferenceActivity {
 
     //Fix LG support V7 bug:
@@ -42,10 +43,11 @@ public class AutoCleanActivity extends PreferenceActivity {
     public final static String PREF_AUTO_CLEAN_FILE_TYPE = "pref_auto_clean_file_type";
     public final static String PREF_AUTO_CLEAN_DELAY_DATE = "pref_auto_clean_delay_date";
 
-    private SharedPreferences preference;
-    private Toolbar mActionBar;
-    private SharedPreferences.OnSharedPreferenceChangeListener myPrefChangeListener;
     private Context context;
+    private Toolbar mActionBar;
+    private JobScheduler jobScheduler;
+    private SharedPreferences preference;
+    private SharedPreferences.OnSharedPreferenceChangeListener myPrefChangeListener;
 
     public AutoCleanActivity() {
         myPrefChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -65,21 +67,16 @@ public class AutoCleanActivity extends PreferenceActivity {
 //        preference.edit().putLong(PREF_LAST_ACTIVE_THIS, new Date().getTime()).commit();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void bindJobService() {
-        if (!preference.getBoolean(PREF_AUTO_CLEAN, false)) return;
-        //TODO: bind jobSchedle here.
-
-        // JobScheduler for auto clean sqlite
-        JobInfo job = new JobInfo.Builder(0, new ComponentName(this, AutoCleanService.class))
+        if (!preference.getBoolean(PREF_AUTO_CLEAN, false)) {
+            jobScheduler.cancel(0);
+        }
+        JobInfo job = new JobInfo.Builder(0, new ComponentName(context, AutoCleanService.class))
                 .setRequiresCharging(true)
                 .setRequiresDeviceIdle(true)
-                .setPeriodic(8000)
-                        //TODO remove it
-                //.setPeriodic(24 * 60 * 60 * 1000)
+                .setPeriodic(24 * 60 * 60 * 1000)
                 .setPersisted(true)
                 .build();
-        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
         jobScheduler.cancel(0);
         jobScheduler.schedule(job);
     }
@@ -91,26 +88,22 @@ public class AutoCleanActivity extends PreferenceActivity {
         context = this.getBaseContext();
         addPreferencesFromResource(R.xml.preference);
         mActionBar.setTitle(getTitle());
-        preference = PreferenceManager.getDefaultSharedPreferences(this);
+        preference = PreferenceManager.getDefaultSharedPreferences(context);
+        jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
     }
 
     @Override
     protected void onResume() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mActionBar.setElevation(MyUtil.dip2px(context, 4));
-        }
-
         super.onResume();
+        mActionBar.setElevation(MyUtil.dip2px(context, 4));
+        jobScheduler.cancel(0);
         initSharedPrefListener();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            bindJobService();
-        }
+        bindJobService();
     }
 
     @Override
