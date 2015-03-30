@@ -38,10 +38,7 @@ public class AutoCleanService extends JobService {
         context = this;
         notificationManagerCompat = NotificationManagerCompat.from(context);
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN, false)) {
-            notificationManagerCompat.cancel(NOTIFICATION_JOB_ID);
-            return false;
-        }
+        if (!preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN, false)) return false;
         sendNotification();
         cleanUp();
         new Handler().postDelayed(new Runnable() {
