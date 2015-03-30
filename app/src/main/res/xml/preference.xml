@@ -32,7 +32,7 @@
             android:summary="@string/pref_about_summary">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://goo.gl/dpwozO" />
+                android:data="https://goo.gl/UY8jjR" />
         </Preference>
         -->
         <Preference
