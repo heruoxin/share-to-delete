@@ -23,6 +23,12 @@
             android:entries="@array/dates"
             android:entryValues="@array/date_values"
             />
+        <SwitchPreference
+            android:title="@string/pref_auto_clean_path_title"
+            android:summaryOn="@string/pref_auto_clean_path_summary_on"
+            android:summaryOff="@string/pref_auto_clean_path_summary_off"
+            android:defaultValue="true"
+            android:key="pref_auto_clean_path" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/about">

@@ -20,4 +20,7 @@
     <string name="pref_auto_clean_summary_delay_date">Set the Months of file to keep.</string>
     <string name="title_activity_auto_clean_summary">Auto clean up SD-Card when charging.\n (Require Android Lollipop or above)</string>
     <string name="toast_auto_clean">Clean %1$s files.</string>
+    <string name="pref_auto_clean_path_title">File Folder</string>
+    <string name="pref_auto_clean_path_summary_on">Whole SD-Card</string>
+    <string name="pref_auto_clean_path_summary_off">Only camera folder (DCIM/)</string>
 </resources>

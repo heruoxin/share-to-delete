@@ -68,28 +68,29 @@ public class AutoCleanService extends JobService {
         int fileType =  Integer.parseInt(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_FILE_TYPE, "-1"));
         long time = new Date().getTime() - (long)
                 Integer.parseInt(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_DELAY_DATE, "9999")) * 30 * 24 * 60 * 60 * 1000;
+        boolean allSdcard = preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN_PATH, true);
 
         Log.v(MyUtil.PACKAGE_NAME, "onStartJob fileType: "+ fileType);
         Log.v(MyUtil.PACKAGE_NAME, "onStartJob time: "+ time);
         switch (fileType) {
             case 0:
-                cleanUp(MediaStore.Images.Media.INTERNAL_CONTENT_URI, time);
-                cleanUp(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, time);
+                cleanUp(MediaStore.Images.Media.INTERNAL_CONTENT_URI, time, allSdcard);
+                cleanUp(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, time, allSdcard);
                 break;
             case 1:
-                cleanUp(MediaStore.Video.Media.INTERNAL_CONTENT_URI, time);
-                cleanUp(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, time);
+                cleanUp(MediaStore.Video.Media.INTERNAL_CONTENT_URI, time, allSdcard);
+                cleanUp(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, time, allSdcard);
                 break;
             case 2:
-                cleanUp(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, time);
-                cleanUp(MediaStore.Images.Media.INTERNAL_CONTENT_URI, time);
-                cleanUp(MediaStore.Video.Media.INTERNAL_CONTENT_URI, time);
-                cleanUp(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, time);
+                cleanUp(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, time, allSdcard);
+                cleanUp(MediaStore.Images.Media.INTERNAL_CONTENT_URI, time, allSdcard);
+                cleanUp(MediaStore.Video.Media.INTERNAL_CONTENT_URI, time, allSdcard);
+                cleanUp(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, time, allSdcard);
                 break;
         }
     }
 
-    private void cleanUp(Uri queryUri, long time) {
+    private void cleanUp(Uri queryUri, long time, boolean allSdcard) {
         String selection = MediaStore.Images.Media.DATE_MODIFIED + "<" + time/1000;
 
         Cursor cursor = null;
@@ -106,7 +107,11 @@ public class AutoCleanService extends JobService {
             }
             cursor.moveToFirst();
             while (cursor.moveToNext()){
-                if (new File(cursor.getString(column_index)).delete()) deletedFileCount += 1;
+                String path = cursor.getString(column_index);
+                if (path == null) continue;
+                if (allSdcard || path.contains("/DCIM/")) {
+                    if (new File(path).delete()) deletedFileCount += 1;
+                }
             }
         } finally {
             if (cursor != null) {
