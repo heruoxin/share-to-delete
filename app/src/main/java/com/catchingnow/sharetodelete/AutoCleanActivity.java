@@ -38,6 +38,7 @@ public class AutoCleanActivity extends PreferenceActivity {
         return super.onKeyUp(keyCode, event);
     }
 
+    public final static String PREF_FIRST_LAUNCH = "pref_first_launch";
     public final static String PREF_AUTO_CLEAN = "pref_auto_clean";
     public final static String PREF_AUTO_CLEAN_FILE_TYPE = "pref_auto_clean_file_type";
     public final static String PREF_AUTO_CLEAN_DELAY_DATE = "pref_auto_clean_delay_date";

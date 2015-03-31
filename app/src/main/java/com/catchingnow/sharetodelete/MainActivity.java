@@ -2,14 +2,15 @@ package com.catchingnow.sharetodelete;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,6 +60,10 @@ public class MainActivity extends ActionBarActivity {
                 mHandler.obtainMessage().sendToTarget();
             }
         }).start();
+
+
+        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
+        preference.edit().putBoolean(AutoCleanActivity.PREF_FIRST_LAUNCH, true).commit();
     }
 
     @Override
