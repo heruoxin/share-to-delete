@@ -67,7 +67,7 @@ public class AutoCleanService extends JobService {
     private void cleanUp() {
         int fileType =  Integer.parseInt(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_FILE_TYPE, "-1"));
         long time = new Date().getTime() - (long)
-                Integer.parseInt(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_DELAY_DATE, "9999")) * 30 * 24 * 60 * 60 * 1000;
+                Float.parseFloat(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_DELAY_DATE, "9999")) * 30 * 24 * 60 * 60 * 1000;
         boolean allSdcard = preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN_PATH, true);
 
         Log.v(MyUtil.PACKAGE_NAME, "onStartJob fileType: "+ fileType);
