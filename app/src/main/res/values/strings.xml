@@ -22,5 +22,5 @@
     <string name="toast_auto_clean">Clean %1$s files.</string>
     <string name="pref_auto_clean_path_title">File Folder</string>
     <string name="pref_auto_clean_path_summary_on">Whole SD-Card</string>
-    <string name="pref_auto_clean_path_summary_off">Only camera folder (DCIM/)</string>
+    <string name="pref_auto_clean_path_summary_off">Only screenshots</string>
 </resources>

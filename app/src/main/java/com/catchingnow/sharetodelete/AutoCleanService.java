@@ -109,7 +109,7 @@ public class AutoCleanService extends JobService {
             while (cursor.moveToNext()){
                 String path = cursor.getString(column_index);
                 if (path == null) continue;
-                if (allSdcard || path.contains("/DCIM/")) {
+                if (allSdcard || path.contains("Screenshots")) {
                     if (new File(path).delete()) deletedFileCount += 1;
                 }
             }

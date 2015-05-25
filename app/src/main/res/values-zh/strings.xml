@@ -21,7 +21,7 @@
     <string name="pref_rate_title">评分</string>
     <string name="title_activity_auto_clean_summary">充电时自动清理存储卡。\n（仅支持 Android 5.0 或更高的系统）</string>
     <string name="toast_auto_clean">清理了 %1$s 个过期文件。</string>
-    <string name="pref_auto_clean_path_summary_off">仅相机文件夹（DCIM/）</string>
+    <string name="pref_auto_clean_path_summary_off">仅截图(Pictures/Screenshots)</string>
     <string name="pref_auto_clean_path_summary_on">整个存储卡</string>
     <string name="pref_auto_clean_path_title">多媒体文件夹</string>
 </resources>
