@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -40,7 +39,7 @@ public class AutoCleanService extends JobService {
         context = this;
         notificationManagerCompat = NotificationManagerCompat.from(context);
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN, false)) return false;
+        if (!preferences.getBoolean(AutoCleanSettingsActivity.PREF_AUTO_CLEAN, false)) return false;
         sendNotification();
         cleanUp();
         sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
@@ -65,10 +64,10 @@ public class AutoCleanService extends JobService {
     }
 
     private void cleanUp() {
-        int fileType =  Integer.parseInt(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_FILE_TYPE, "-1"));
+        int fileType =  Integer.parseInt(preferences.getString(AutoCleanSettingsActivity.PREF_AUTO_CLEAN_FILE_TYPE, "-1"));
         long time = new Date().getTime() - (long)
-                Float.parseFloat(preferences.getString(AutoCleanActivity.PREF_AUTO_CLEAN_DELAY_DATE, "9999")) * 30 * 24 * 60 * 60 * 1000;
-        boolean allSdcard = preferences.getBoolean(AutoCleanActivity.PREF_AUTO_CLEAN_PATH, true);
+                Float.parseFloat(preferences.getString(AutoCleanSettingsActivity.PREF_AUTO_CLEAN_DELAY_DATE, "9999")) * 30 * 24 * 60 * 60 * 1000;
+        boolean allSdcard = preferences.getBoolean(AutoCleanSettingsActivity.PREF_AUTO_CLEAN_PATH, true);
 
         Log.v(MyUtil.PACKAGE_NAME, "onStartJob fileType: "+ fileType);
         Log.v(MyUtil.PACKAGE_NAME, "onStartJob time: "+ time);

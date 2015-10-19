@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class DeleteDialogActivity extends ActionBarActivity {
 
     private List<String> filePaths;
     private int allFilesCount;
@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
-        preference.edit().putBoolean(AutoCleanActivity.PREF_FIRST_LAUNCH, true).commit();
+        preference.edit().putBoolean(AutoCleanSettingsActivity.PREF_FIRST_LAUNCH, true).commit();
     }
 
     @Override
@@ -151,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onSettingClick(View view) {
-        startActivity(new Intent(this, AutoCleanActivity.class));
+        startActivity(new Intent(this, AutoCleanSettingsActivity.class));
     }
 
     public void onCancelClick(View view) {

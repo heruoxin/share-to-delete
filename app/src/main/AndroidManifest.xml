@@ -9,10 +9,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:manageSpaceActivity=".AutoCleanActivity"
+        android:manageSpaceActivity=".AutoCleanSettingsActivity"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".DeleteDialogActivity"
             android:excludeFromRecents="true"
             android:label="@string/button_delete" >
             <intent-filter>
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AutoCleanActivity"
+            android:name=".AutoCleanSettingsActivity"
             android:label="@string/title_activity_auto_clean"
             android:theme="@style/AppSettingTheme" >
         </activity>

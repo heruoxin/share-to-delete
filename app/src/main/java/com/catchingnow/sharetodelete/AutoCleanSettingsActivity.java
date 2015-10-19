@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-public class AutoCleanActivity extends PreferenceActivity {
+public class AutoCleanSettingsActivity extends PreferenceActivity {
 
     //Fix LG support V7 bug:
     //https://code.google.com/p/android/issues/detail?id=78154
@@ -50,7 +50,7 @@ public class AutoCleanActivity extends PreferenceActivity {
     private SharedPreferences preference;
     private SharedPreferences.OnSharedPreferenceChangeListener myPrefChangeListener;
 
-    public AutoCleanActivity() {
+    public AutoCleanSettingsActivity() {
         myPrefChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                   String key) {
